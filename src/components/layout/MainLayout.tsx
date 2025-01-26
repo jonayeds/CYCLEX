@@ -1,10 +1,8 @@
 import { Button } from "../ui/button";
 import {
   Drawer,
-  DrawerClose,
   DrawerContent,
   DrawerDescription,
-  DrawerFooter,
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
@@ -13,7 +11,7 @@ import {
 const MainLayout = () => {
   return (
     <div className="">
-      <nav className="bg-gray-300 w-screen fixed px-[7vw] lg:px-[4vw] py-[1vh] ">
+      <nav className="bg-gray-300 w-screen fixed px-[7vw] lg:px-[4vw] py-[1vh] flex justify-between items-center">
         <Drawer direction="left">
           <DrawerTrigger>
             <svg
@@ -42,6 +40,12 @@ const MainLayout = () => {
             </DrawerHeader>
           </DrawerContent>
         </Drawer>
+        <div>
+            <h1 className="font-main text-3xl uppercase cursor-pointer">cyclex</h1>
+        </div>
+        <div>
+            <Button>Login</Button>
+        </div>
       </nav>
       <div className="min-h-[200vh] pt-10 ">content</div>
     </div>

@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&display=swap');
+
+.font-main{
+  font-family: "Jura", serif;
+}
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
