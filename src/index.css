@@ -7,6 +7,9 @@
 .font-description{
   font-family: "Montserrat", serif;
 }
+.bg-nav{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.53), rgba(0, 0, 0, 0.20), rgba(0, 0, 0, 0));
+}
 
 
 @tailwind base;

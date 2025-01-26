@@ -10,7 +10,7 @@ import {
 const MainLayout = () => {
   return (
     <div className="">
-      <nav className=" w-screen fixed px-[7vw] lg:px-[4vw] py-[1vh] flex justify-between items-center">
+      <nav className=" w-screen fixed px-[7vw] lg:px-[4vw] py-[2vh] flex justify-between items-center bg-nav text-white">
         <Drawer direction="left">
           <DrawerTrigger>
             <svg
@@ -40,14 +40,14 @@ const MainLayout = () => {
           </DrawerContent>
         </Drawer>
         <div>
-            <h1 className="font-main text-3xl uppercase cursor-pointer">cyclex</h1>
+            <h1 className="font-main text-3xl uppercase cursor-pointer tracking-wider md:tracking-[8px]">cyclex</h1>
         </div>
         <div className="flex gap-4 items-center">
-            <Button>Login</Button>
-            <Button variant={"link"}>Register</Button>
+            <NavLink to={"/login"}><Button>Login</Button></NavLink>
+            <NavLink to={"/register"} className={"hidden md:flex"}><Button variant={"link"}>Register</Button></NavLink>
         </div>
       </nav>
-      <div className="min-h-[200vh] pt-16 ">
+      <div className="min-h-[200vh] ">
         <Outlet/>
       </div>
     </div>
