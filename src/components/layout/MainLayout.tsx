@@ -1,17 +1,16 @@
+import { NavLink, Outlet } from "react-router-dom";
 import { Button } from "../ui/button";
 import {
   Drawer,
   DrawerContent,
-  DrawerDescription,
-  DrawerHeader,
-  DrawerTitle,
   DrawerTrigger,
 } from "../ui/drawer";
+
 
 const MainLayout = () => {
   return (
     <div className="">
-      <nav className="bg-gray-300 w-screen fixed px-[7vw] lg:px-[4vw] py-[1vh] flex justify-between items-center">
+      <nav className=" w-screen fixed px-[7vw] lg:px-[4vw] py-[1vh] flex justify-between items-center">
         <Drawer direction="left">
           <DrawerTrigger>
             <svg
@@ -31,23 +30,26 @@ const MainLayout = () => {
               <line x1="16" x2="35" y1="18" y2="18" />
             </svg>
           </DrawerTrigger>
-          <DrawerContent className="">
-            <DrawerHeader>
-              <DrawerTitle>Are you absolutely sure?</DrawerTitle>
-              <DrawerDescription>
-                This action cannot be undone.
-              </DrawerDescription>
-            </DrawerHeader>
+          <DrawerContent >
+            <div className="px-4 lg:px-8 font-description text-lg flex flex-col items-start pt-[7vh] gap-y-4 tracking-wider">
+
+            <NavLink to={"/"} className={"group"}><span className="group-[.active]:text-xl group-[.active]:font-bold duration-300">Home</span></NavLink>
+            <NavLink to={"/all-bicycles"} className={"group"}><span className="group-[.active]:text-xl group-[.active]:font-bold duration-300">All Bi-Cycles</span></NavLink>
+            <NavLink to={"/about"} className={"group"}><span className="group-[.active]:text-xl group-[.active]:font-bold duration-300">About</span></NavLink>
+            </div>
           </DrawerContent>
         </Drawer>
         <div>
             <h1 className="font-main text-3xl uppercase cursor-pointer">cyclex</h1>
         </div>
-        <div>
+        <div className="flex gap-4 items-center">
             <Button>Login</Button>
+            <Button variant={"link"}>Register</Button>
         </div>
       </nav>
-      <div className="min-h-[200vh] pt-10 ">content</div>
+      <div className="min-h-[200vh] pt-16 ">
+        <Outlet/>
+      </div>
     </div>
   );
 };

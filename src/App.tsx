@@ -5,9 +5,9 @@ function App() {
   
 
   return (
-    <>
+    <div className="font-description">
       <MainLayout/>
-    </>
+    </div>
   )
 }
 
