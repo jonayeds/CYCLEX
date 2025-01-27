@@ -10,7 +10,7 @@ import {
 const MainLayout = () => {
   return (
     <div className="">
-      <nav className=" w-screen fixed px-[7vw] lg:px-[4vw] py-[2vh] flex justify-between items-center bg-nav text-white">
+      <nav className=" w-screen z-50 fixed px-[7vw] lg:px-[4vw] py-[2vh] flex justify-between items-center bg-nav text-white ">
         <Drawer direction="left">
           <DrawerTrigger>
             <svg
