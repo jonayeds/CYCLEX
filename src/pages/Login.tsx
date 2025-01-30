@@ -1,40 +1,60 @@
 import { useForm } from "react-hook-form"
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "../components/ui/form"
+import { Form, FormControl,  FormField, FormItem, FormLabel, FormMessage } from "../components/ui/form"
 import { Input } from "../components/ui/input"
 import { Button } from "../components/ui/button"
 
 const Login = () => {
   const form = useForm({
     defaultValues:{
-      username:""
+      email:"",
+      password:""
     }
   })
   const onSubmit =(values)=>{
     console.log(values)
+    form.reset()
   }
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="min-h-screen  flex flex-col text-white  items-center justify-center login-background">
+      <div className=" flex flex-col text-white  items-center justify-center bg-white bg-opacity-15 backdrop-blur-2xl shadow-2xl p-8 rounded-xl">
+      <h1 className="text-[4vw]  font-main mb-10">Login</h1>
       <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 min-w-[25vw] ">
         <FormField
           control={form.control}
-          name="username"
+          name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Username</FormLabel>
+              <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input  {...field} />
+                <Input  {...field} type="email" />
               </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
+
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <FormField
+          control={form.control}
+          name="password"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Password</FormLabel>
+              <FormControl>
+                <Input  {...field} type="password" />
+              </FormControl>
+
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <div className="flex justify-center">
+
+        <Button type="submit"  >Submit</Button>
+        </div>
       </form>
     </Form>
+      </div>
     </div>
   )
 }

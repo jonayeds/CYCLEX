@@ -32,6 +32,8 @@ const MainLayout = () => {
           </DrawerTrigger>
           <DrawerContent >
             <div className="px-4 lg:px-8 font-description text-lg flex flex-col items-start pt-[7vh] gap-y-4 tracking-wider">
+            <h1 className="font-main text-black mx-auto text-3xl uppercase cursor-pointer tracking-wider md:tracking-[8px]">cyclex</h1>
+              <hr  className="border-2 border-gray-200 w-full mb-4"/>
 
             <NavLink to={"/"} className={"group"}><span className="group-[.active]:text-xl group-[.active]:font-bold duration-300">Home</span></NavLink>
             <NavLink to={"/all-bicycles"} className={"group"}><span className="group-[.active]:text-xl group-[.active]:font-bold duration-300">All Bi-Cycles</span></NavLink>

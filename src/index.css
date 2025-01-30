@@ -16,6 +16,11 @@
   background-size: cover;
   background-attachment: fixed;
 }
+.login-background{
+  background-image: url("./assets/login/login-bg.jpg");
+  background-size: cover;
+  
+}
 
 
 @tailwind base;
