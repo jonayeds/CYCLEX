@@ -1,22 +1,23 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { BaseQueryApi, BaseQueryFn, createApi, DefinitionType, FetchArgs, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { RootState } from '../store'
-import { logOut, setUser } from '../features/auth/authSlice'
-import { toast } from 'sonner'
+import { BaseQueryApi, BaseQueryFn, createApi, DefinitionType, FetchArgs, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { RootState } from "../store";
+import { logOut, setUser } from "../features/auth/authSlice";
+import { toast } from "sonner";
 
 const baseQuery = fetchBaseQuery({
-    baseUrl:"http://localhost:8000/api/v1",
-    credentials:"include",
-    prepareHeaders:(headers, {getState})=>{
-      const token = (getState() as RootState).auth.token
-      if(token){
-        headers.set("authorization", `${token}`)
-      }
-      return headers
+  baseUrl: "http://localhost:8000/api/v1" ,
+  credentials:"include",
+  prepareHeaders:(headers, {getState})=>{
+    const token = (getState() as RootState).auth.token
+    console.log(token)
+    if(token){
+      headers.set("authorization", `${token}`)
     }
+    return headers
+  }
 })
 
-const baseQueryWithRefreshToken : BaseQueryFn<FetchArgs, BaseQueryApi, DefinitionType>= async(args, api, extraOptions):Promise<any>=>{
+const baseQueryWithRefreshToken: BaseQueryFn<FetchArgs, BaseQueryApi, DefinitionType> = async(args, api, extraOptions) : Promise<any>=>{
   let result = await baseQuery(args, api, extraOptions)
   if(result?.error?.status === 404 ){
     toast.error((result.error.data as { message: string })?.message)
@@ -37,10 +38,11 @@ const baseQueryWithRefreshToken : BaseQueryFn<FetchArgs, BaseQueryApi, Definitio
       api.dispatch(logOut())
     }
   }
+  return result
 }
 
 export const baseApi = createApi({
-    reducerPath: 'baseApi',
-    baseQuery: baseQueryWithRefreshToken,
-    endpoints:()=>({})
-  })
+  reducerPath: "baseApi",
+  baseQuery: baseQueryWithRefreshToken,
+  endpoints: () => ({}),
+});

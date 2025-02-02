@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { FieldValues, useForm } from "react-hook-form"
 import { Form, FormControl,  FormField, FormItem, FormLabel, FormMessage } from "../components/ui/form"
 import { Input } from "../components/ui/input"
 import { Button } from "../components/ui/button"
 import { toast } from "sonner"
 import { varifyToken } from "../utils/varifyToken"
-import { data, useNavigate } from "react-router-dom"
+import {  useNavigate } from "react-router-dom"
 import { useAppDispatch } from "../redux/hooks"
 import { useLoginMutation } from "../redux/features/auth/authApi"
 import { IUser, setUser } from "../redux/features/auth/authSlice"
@@ -22,19 +23,23 @@ const Login = () => {
   })
   const onSubmit = async(values:FieldValues)=>{
     const toastId = toast.loading("Logging in...")
-    console.log(values)
     try {
-      
-      const res = await login(data).unwrap()
-      const user = varifyToken(res.data.accessToken) as IUser
-      dispatch(setUser({user, token:res.data.accessToken}))
-      navigate(`/${user.role}/dashboard`)
-      toast.success("Logged in", {id:toastId, duration:1000})
-    } catch (error) {
-      toast.error("Something went wrong", {id:toastId, duration:2000})
+      const userInfo = {
+        email : values.email,
+        password:values.password
+      }
+      const res = await login(userInfo).unwrap()
+      console.log(res)
+      const user = varifyToken(res?.data?.accessToken) as IUser
+      console.log("user",user)
+      dispatch(setUser({user, token:res?.data?.accessToken}))
+      navigate(`/`)
+        toast.success("Logged in", {id:toastId, duration:1000})
+      form.reset()
+    } catch (error:any) {
+      toast.error(error?.data?.message||"Something went wrong", {id:toastId, duration:2000})
       console.log(error)
     }
-    form.reset()
   }
   return (
     <div className="min-h-screen  flex flex-col text-white  items-center justify-center login-background">
