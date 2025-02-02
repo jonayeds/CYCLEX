@@ -3,6 +3,8 @@ import { Button } from "../ui/button";
 import {
   Drawer,
   DrawerContent,
+  DrawerDescription,
+  DrawerTitle,
   DrawerTrigger,
 } from "../ui/drawer";
 import { useDispatch } from "react-redux";
@@ -28,9 +30,9 @@ const MainLayout = () => {
               viewBox="0 0 28 28"
               fill="none"
               stroke="currentColor"
-              stroke-width="1.75"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="1.75"
+              strokeLinecap="round"
+              strokeLinejoin="round"
               className="lucide lucide-menu "
             >
               <line x1="10" x2="35" y1="6" y2="6" />
@@ -40,12 +42,17 @@ const MainLayout = () => {
           </DrawerTrigger>
           <DrawerContent >
             <div className="px-4 lg:px-8 font-description text-lg flex flex-col items-start pt-[7vh] gap-y-4 tracking-wider">
-            <h1 className="font-main text-black mx-auto text-3xl uppercase cursor-pointer tracking-wider md:tracking-[8px]">cyclex</h1>
+            <DrawerTitle>
+            <p className="font-main text-black mx-auto text-3xl uppercase cursor-pointer tracking-wider md:tracking-[8px]">cyclex</p>
+
+            </DrawerTitle>
               <hr  className="border-2 border-gray-200 w-full mb-4"/>
 
+            <DrawerDescription className="flex flex-col space-y-4 text-black">
             <NavLink to={"/"} className={"group"}><span className="group-[.active]:text-xl group-[.active]:font-bold duration-300">Home</span></NavLink>
             <NavLink to={"/all-bicycles"} className={"group"}><span className="group-[.active]:text-xl group-[.active]:font-bold duration-300">All Bi-Cycles</span></NavLink>
             <NavLink to={"/about"} className={"group"}><span className="group-[.active]:text-xl group-[.active]:font-bold duration-300">About</span></NavLink>
+            </DrawerDescription>
             </div>
           </DrawerContent>
         </Drawer>
