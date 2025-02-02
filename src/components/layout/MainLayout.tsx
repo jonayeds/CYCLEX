@@ -5,9 +5,17 @@ import {
   DrawerContent,
   DrawerTrigger,
 } from "../ui/drawer";
+import { useDispatch } from "react-redux";
+import { logOut, selectCurrentToken } from "../../redux/features/auth/authSlice";
+import { useAppSelector } from "../../redux/hooks";
 
 
 const MainLayout = () => {
+  const dispatch = useDispatch()
+  const token = useAppSelector(selectCurrentToken)
+  const handleLogout = ()=>{
+    dispatch(logOut())
+  }
   return (
     <div className="">
       <nav className=" w-screen z-50 fixed px-[7vw] lg:px-[4vw] py-[2vh] flex justify-between items-center bg-nav text-white ">
@@ -44,10 +52,16 @@ const MainLayout = () => {
         <div>
             <h1 className="font-main text-3xl uppercase cursor-pointer tracking-wider md:tracking-[8px]">cyclex</h1>
         </div>
-        <div className="flex gap-4 items-center">
+        {
+          !token ? (<div className="flex gap-4 items-center">
             <NavLink to={"/login"}><Button>Login</Button></NavLink>
             <NavLink to={"/register"} className={"hidden md:flex"}><Button variant={"link"}>Register</Button></NavLink>
-        </div>
+        </div>): (<div>
+          <Button onClick={handleLogout}>Logout</Button>
+        </div>)
+        }
+        
+        
       </nav>
       <div className="min-h-[200vh] ">
         <Outlet/>
