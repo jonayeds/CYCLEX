@@ -6,6 +6,7 @@ import About from "../pages/About";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import DashboardMain from "../pages/DashboardMain";
 
 export const router = createBrowserRouter([
     {
@@ -23,6 +24,10 @@ export const router = createBrowserRouter([
             {
                 path:"/about",
                 element:<About/>
+            },
+            {
+                path:"/dashboard",
+                element:<DashboardMain/>
             },
         ],
     },
