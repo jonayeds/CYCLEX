@@ -52,6 +52,7 @@ const MainLayout = () => {
             <NavLink to={"/"} className={"group"}><span className="group-[.active]:text-xl group-[.active]:font-bold duration-300">Home</span></NavLink>
             <NavLink to={"/all-bicycles"} className={"group"}><span className="group-[.active]:text-xl group-[.active]:font-bold duration-300">All Bi-Cycles</span></NavLink>
             <NavLink to={"/about"} className={"group"}><span className="group-[.active]:text-xl group-[.active]:font-bold duration-300">About</span></NavLink>
+            <NavLink to={"/dashboard"} className={"group"}><span className="group-[.active]:text-xl group-[.active]:font-bold duration-300">Dashboard</span></NavLink>
             </DrawerDescription>
             </div>
           </DrawerContent>
