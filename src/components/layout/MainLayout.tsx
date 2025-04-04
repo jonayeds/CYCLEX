@@ -10,6 +10,7 @@ import {
 import { useDispatch } from "react-redux";
 import { logOut, selectCurrentToken } from "../../redux/features/auth/authSlice";
 import { useAppSelector } from "../../redux/hooks";
+import { Github, Twitter } from "lucide-react";
 
 
 const MainLayout = () => {
@@ -71,8 +72,29 @@ const MainLayout = () => {
         
         
       </nav>
-      <div className="min-h-[200vh] ">
+      <div className="min-h-[100vh] ">
         <Outlet/>
+      </div>
+      <div className="bg-[#626161] text-white mt-16 py-10">
+        <div className="max-w-[70vw] mx-auto grid md:grid-cols-3 grid-cols-1 gap-y-8" >
+        <h1 className="font-main md:text-center text-3xl uppercase cursor-pointer tracking-wider md:tracking-[8px]">cyclex</h1>
+        <div className="flex flex-col md:items-center">
+          <div>
+
+          <p className="font-semibold">Legal</p>
+          <p className="font-light">Privacy policy</p>
+          <p className="font-light">Terms and Conditions</p>
+          </div>
+        </div>
+        <div className="flex flex-col md:items-center ">
+          <p className="font-semibold">Follow Us</p>
+          <div className="flex items-center gap-3 mt-2">
+
+          <p><Github/></p>
+          <p><Twitter/></p>
+          </div>
+        </div>
+        </div>
       </div>
     </div>
   );
