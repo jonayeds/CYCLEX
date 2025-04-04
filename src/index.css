@@ -19,12 +19,11 @@
 .login-background{
   background-image: url("./assets/login/login-bg.jpg");
   background-size: cover;
-  
 }
 .register-background{
   background-image: url("./assets/register/register-bg.jpg");
   background-size: cover;
-  background-position: center;
+  background-position: right;
   
 }
 

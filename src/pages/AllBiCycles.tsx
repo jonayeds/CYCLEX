@@ -5,17 +5,17 @@ import { TBiCycle } from "../types/biCycles.types"
 const AllBiCycles = () => {
   const {data:allBiCycles, isLoading} = useGetAllBiCyclesQuery(undefined)
   if(isLoading){
-    return <div>
-      <h1>Loading...</h1>
+    return <div className="flex h-screen  items-center" >
+      <h1 className="text-2xl">Loading...</h1>
     </div>
   }
 
   return (
     <div className="pt-36">
-      <h1 className="text-3xl text-center " >All Bi-Cycles</h1>
+      <h1 className="text-3xl text-center font-main" >All Bi-Cycles</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-max mx-auto">
         {
-          allBiCycles?.data.map((item: TBiCycle)=> <BiCycleCard biCycle={item} />)
+          allBiCycles?.data.map((item: TBiCycle)=> <BiCycleCard key={item._id} biCycle={item} />)
         }
       </div>
     </div>
