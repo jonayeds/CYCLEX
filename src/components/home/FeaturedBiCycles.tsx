@@ -4,7 +4,6 @@ import BiCycleCard from "../shared/BiCycleCard"
 
 const FeaturedBiCycles = () => {
 	const  {data:allBiCycles, isLoading} = useGetAllBiCyclesQuery([{name:"limit", value:"6"}])
-	console.log(allBiCycles)
 	if(isLoading){
 		return <div className="text-2xl my-8  w-screen flex justify-center">
 			LOADING...
