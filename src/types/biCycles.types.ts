@@ -9,4 +9,5 @@ export type TBiCycle = {
     updatedAt:string;
     type:string;
     _id:string;
+    image:string;
 }

@@ -5,6 +5,7 @@ import { useGetAllBiCyclesQuery } from "../redux/features/bi-cycles/biCyclesApi"
 import { TBiCycle } from "../types/biCycles.types";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogTitle,
   DialogTrigger,
@@ -59,7 +60,6 @@ const AllBiCycles = () => {
     setSearchedBiCycles(bicycles)
   }else{
     setBicycles(searched.filter((s: TBiCycle)=> isfiltered(s)))
-    console.log(bicycles)
     setSearchedBiCycles(allBiCycles.data)
   }
   };
@@ -70,7 +70,6 @@ const AllBiCycles = () => {
       </div>
     );
   }
-console.log(searchedBiCycles)
   const handleFilter: SubmitHandler<FieldValues> = (data)=>{
     let filtered= searchedBiCycles;
     setFilterData(data as {
@@ -218,9 +217,9 @@ console.log(searchedBiCycles)
             )}
             />
             </div>
-            <div className="flex justify-center ">
-              <Button type="submit" className="border border-gray-300">Filter</Button>
-            </div>
+            <DialogClose className=" max-w-max mx-auto" asChild>
+              <Button  type="submit" className="border border-gray-300">Filter</Button>
+            </DialogClose>
             </form>
       </Form>
               

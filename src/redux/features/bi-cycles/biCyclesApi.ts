@@ -1,3 +1,4 @@
+
 import { TQueryParams } from "../../../types/global.types";
 import { baseApi } from "../../api/baseApi";
 
@@ -15,7 +16,15 @@ const authApi = baseApi.injectEndpoints({
                 params
             }}
         }),
+        getSingleBicycle: builder.query({
+            query:(params)=>{
+                return {
+                    url:`/products/${params}`,
+                    method:'GET'
+                }
+            }
+        })
     })
 })
 
-export const {useGetAllBiCyclesQuery} = authApi
+export const {useGetAllBiCyclesQuery, useGetSingleBicycleQuery} = authApi

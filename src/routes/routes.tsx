@@ -7,6 +7,7 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import DashboardMain from "../pages/DashboardMain";
+import BicycleDetails from "../pages/BicycleDetails";
 
 export const router = createBrowserRouter([
     {
@@ -20,6 +21,14 @@ export const router = createBrowserRouter([
             {
                 path:"/all-bicycles",
                 element:<AllBiCycles/>
+            },
+            {
+                path:"/bicycle-details/:bicycleId",
+                element:<BicycleDetails/>
+            },
+            {
+                path:"/:bicycleId/checkout",
+                element:<BicycleDetails/>
             },
             {
                 path:"/about",
