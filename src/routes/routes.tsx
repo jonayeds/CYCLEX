@@ -8,6 +8,8 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import DashboardMain from "../pages/DashboardMain";
 import BicycleDetails from "../pages/BicycleDetails";
+import Checkout from "../pages/Checkout";
+import ProtectedRoute from "../components/layout/ProtectedRoute";
 
 export const router = createBrowserRouter([
     {
@@ -28,7 +30,9 @@ export const router = createBrowserRouter([
             },
             {
                 path:"/:bicycleId/checkout",
-                element:<BicycleDetails/>
+                element:<ProtectedRoute>
+                    <Checkout/>
+                </ProtectedRoute>
             },
             {
                 path:"/about",

@@ -23,8 +23,17 @@ const authApi = baseApi.injectEndpoints({
                     method:'GET'
                 }
             }
-        })
+        }),
+       orderBicycle: builder.mutation({
+        query:(payload)=>{
+            return{
+                url:'/orders/',
+                method:"POST",
+                body:payload
+            }
+        }
+       }) 
     })
 })
 
-export const {useGetAllBiCyclesQuery, useGetSingleBicycleQuery} = authApi
+export const {useGetAllBiCyclesQuery, useGetSingleBicycleQuery, useOrderBicycleMutation} = authApi

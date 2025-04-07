@@ -37,9 +37,7 @@ const Register = () => {
           lastName:values.lastName
         }
       }
-      console.log(userInfo)
       const registration =  await register(userInfo).unwrap()
-      console.log(registration)
       if(registration.success){
         const res = await login({email:values.email, password:values.password}).unwrap()
         const user = varifyToken(res?.data?.accessToken) as IUser
