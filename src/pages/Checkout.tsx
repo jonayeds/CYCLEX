@@ -1,7 +1,7 @@
-import { Navigate,  useParams } from "react-router-dom";
+import { Navigate,  useNavigate,  useParams } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { Minus, Plus } from "lucide-react";
-import { useGetSingleBicycleQuery, useMakePaymentMutation } from "../redux/features/bi-cycles/biCyclesApi";
+import { useGetSingleBicycleQuery, useMakePaymentMutation, useOrderBicycleMutation } from "../redux/features/bi-cycles/biCyclesApi";
 import Loading from "../components/shared/Loading";
 import { TBiCycle } from "../types/biCycles.types";
 import { useState } from "react";
@@ -17,31 +17,44 @@ const Checkout = () => {
   const user = useAppSelector(selectCurrentUser)
   const bicycle: TBiCycle = data?.data;
   const [quantity, setQuantity] = useState(1);
+  const [pMethod, setPMethod] = useState("cod")
+  const navigate = useNavigate()
   const [payment] = useMakePaymentMutation()
+  const [order] = useOrderBicycleMutation()
   if (isLoading) {
     return <Loading />;
   }
   if (bicycle.quantity === 0) {
     return <Navigate to={`/bicycle-details/${bicycle._id}`} />;
   }
-
   const handleCheckout =async()=>{
-    // const stripe = await loadStripe(process.env.STRIPE_PUBLISHABLE_KEY as string)
     const id =toast.loading("Placing order")
     const orderData = {
         quantity,
         product:bicycle._id
     }
-    const res = await payment(orderData)
-    console.log(res?.data?.data.url)
-    if(res?.data){
+    
+    if(pMethod === "cod"){
+      console.log("hit")
+      const res = await order({
+        paymentSession:"pending",
+        product: bicycle._id,
+        quantity
+      })
+      if(res?.data){
+        toast.success("Order Confirmed",{id})
+        navigate("/")
+      }
+    }else{
+       const res = await payment(orderData)
+       if(res?.data){
         toast.success(res.data.message, {id})
         window.location.href = res.data.data.url
-        // stripe?.redirectToCheckout(res.data.data._id)
     }else{
         toast.error('something went wrong', {id})
     }
-        console.log(res)
+    }
+    
 
   }
   return (
@@ -85,14 +98,14 @@ const Checkout = () => {
       </div>
       <div className="my-4">
         <p className="text-center my-2">Payment method</p>
-      <RadioGroup defaultValue="option-one">
-  <div className="flex items-center space-x-2 bg-gray-50 py-3 px-3 text-lg rounded-xl border border-gray-200">
-    <RadioGroupItem value="option-one" id="cod" />
+      <RadioGroup  value={pMethod} >
+  <div onClick={()=>setPMethod("cod")} className="flex items-center space-x-2 bg-gray-50 py-3 px-3 text-lg rounded-xl border border-gray-200">
+    <RadioGroupItem value="cod" id="cod"  />
     <Label htmlFor="cod">Cash on delivery</Label>
   </div>
-  <div className="flex items-center space-x-2 bg-gray-50 py-3 px-3 text-lg rounded-xl border border-gray-200">
-    <RadioGroupItem value="option-two" id="option-two" />
-    <Label htmlFor="option-two">Card</Label>
+  <div onClick={()=>setPMethod("card")} className="flex items-center space-x-2 bg-gray-50 py-3 px-3 text-lg rounded-xl border border-gray-200">
+    <RadioGroupItem value="card" id="card" />
+    <Label htmlFor="card">Card</Label>
   </div>
 </RadioGroup>
       </div >

@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import { useOrderBicycleMutation } from "../redux/features/bi-cycles/biCyclesApi";
 
@@ -13,6 +12,7 @@ const PaymentSuccess = () => {
         const verify = async()=>{
             const result =await order({product:product_id, paymentSession:session_id}) 
             console.log(result)
+            window.location.href = "https://bi-cycle-store-shad-cn.vercel.app"
         }
         if(session_id && product_id){
             verify()
@@ -20,8 +20,11 @@ const PaymentSuccess = () => {
         
     },[session_id, product_id, order])
   return (
-    <div>
-        
+    <div className="min-h-screen flex justify-center items-center">
+        <div className="p-4 bg-green-500 rounded-xl text-white ">
+            <h1 className="text-3xl text-center">Payment Successfull</h1>
+            <p className="text-sm text-center mt-2">Redirecting to home page...</p>
+        </div>
     </div>
   )
 }
