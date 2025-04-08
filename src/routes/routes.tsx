@@ -10,6 +10,7 @@ import DashboardMain from "../pages/DashboardMain";
 import BicycleDetails from "../pages/BicycleDetails";
 import Checkout from "../pages/Checkout";
 import ProtectedRoute from "../components/layout/ProtectedRoute";
+import PaymentSuccess from "../pages/PaymentSuccess";
 
 export const router = createBrowserRouter([
     {
@@ -32,6 +33,12 @@ export const router = createBrowserRouter([
                 path:"/:bicycleId/checkout",
                 element:<ProtectedRoute>
                     <Checkout/>
+                </ProtectedRoute>
+            },
+            {
+                path:"/payment-success",
+                element:<ProtectedRoute>
+                    <PaymentSuccess/>
                 </ProtectedRoute>
             },
             {

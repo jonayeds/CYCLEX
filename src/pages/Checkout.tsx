@@ -1,7 +1,7 @@
-import { Navigate, useParams } from "react-router-dom";
+import { Navigate,  useParams } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { Minus, Plus } from "lucide-react";
-import { useGetSingleBicycleQuery, useOrderBicycleMutation } from "../redux/features/bi-cycles/biCyclesApi";
+import { useGetSingleBicycleQuery, useMakePaymentMutation } from "../redux/features/bi-cycles/biCyclesApi";
 import Loading from "../components/shared/Loading";
 import { TBiCycle } from "../types/biCycles.types";
 import { useState } from "react";
@@ -17,7 +17,7 @@ const Checkout = () => {
   const user = useAppSelector(selectCurrentUser)
   const bicycle: TBiCycle = data?.data;
   const [quantity, setQuantity] = useState(1);
-  const [order] = useOrderBicycleMutation()
+  const [payment] = useMakePaymentMutation()
   if (isLoading) {
     return <Loading />;
   }
@@ -26,14 +26,18 @@ const Checkout = () => {
   }
 
   const handleCheckout =async()=>{
+    // const stripe = await loadStripe(process.env.STRIPE_PUBLISHABLE_KEY as string)
     const id =toast.loading("Placing order")
     const orderData = {
         quantity,
         product:bicycle._id
     }
-    const res = await order(orderData) 
+    const res = await payment(orderData)
+    console.log(res?.data?.data.url)
     if(res?.data){
         toast.success(res.data.message, {id})
+        window.location.href = res.data.data.url
+        // stripe?.redirectToCheckout(res.data.data._id)
     }else{
         toast.error('something went wrong', {id})
     }

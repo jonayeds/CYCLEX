@@ -32,8 +32,25 @@ const authApi = baseApi.injectEndpoints({
                 body:payload
             }
         }
+       }),
+       makePayment: builder.mutation({
+        query:(payload)=>{
+            return{
+                url:'/orders/create-payment',
+                method:"POST",
+                body:payload
+            }
+        }
+       }), 
+       verifyPayment: builder.mutation({
+        query:(sessionId)=>{
+            return{
+                url:`/orders/verify-payment/${sessionId}`,
+                method:"POST",
+            }
+        }
        }) 
     })
 })
 
-export const {useGetAllBiCyclesQuery, useGetSingleBicycleQuery, useOrderBicycleMutation} = authApi
+export const {useGetAllBiCyclesQuery, useGetSingleBicycleQuery, useOrderBicycleMutation, useMakePaymentMutation, useVerifyPaymentMutation} = authApi
