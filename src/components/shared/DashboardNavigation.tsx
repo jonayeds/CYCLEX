@@ -15,14 +15,14 @@ const DashboardNavigation = () => {
       </AccordionItem>
         <AccordionItem value="products">
         <AccordionTrigger className="">Products</AccordionTrigger>
-        <AccordionContent className="flex flex-col gap-2">
+        <AccordionContent className="flex flex-col gap-2 py-2">
         <NavLink to={"admin/dashboard/add-product"} className={'group'}><span className={'group-[.active]:bg-black group-[.active]:text-white px-4 py-1 rounded-lg '}>Manage Users</span></NavLink>
         <NavLink to={"admin/dashboard/manage-products"} className={'group'}><span className={'group-[.active]:bg-black group-[.active]:text-white px-4 py-1 rounded-lg '}>Manage Users</span></NavLink>
         </AccordionContent>
       </AccordionItem>
-        <AccordionItem value="Orders">
+        <AccordionItem value="Orders" className="">
         <AccordionTrigger className="">Accessories & Apparel</AccordionTrigger>
-        <AccordionContent className=" flex flex-col gap-2">
+        <AccordionContent className=" flex flex-col gap-2 py-2">
         <NavLink to={"admin/dashboard/manage-orders"} className={'group'}><span className={'group-[.active]:bg-black group-[.active]:text-white px-4 py-1 rounded-lg '}>Manage Orders</span></NavLink>
         </AccordionContent>
       </AccordionItem>

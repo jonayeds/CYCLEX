@@ -12,6 +12,9 @@ import Checkout from "../pages/Checkout";
 import ProtectedRoute from "../components/layout/ProtectedRoute";
 import PaymentSuccess from "../pages/PaymentSuccess";
 import ManageUsers from "../pages/dasboard/admin/ManageUsers";
+import ManageProducts from "../pages/dasboard/admin/ManageProducts";
+import ManageOrders from "../pages/dasboard/admin/ManageOrders";
+import AddProduct from "../pages/dasboard/admin/AddProduct";
 
 export const router = createBrowserRouter([
   {
@@ -67,23 +70,40 @@ export const router = createBrowserRouter([
         <DashboardMain />
       </ProtectedRoute>
     ),
-    children:[
-        {
-            path: "admin/dashboard/users",
-            element: <ManageUsers />,
-          },
-        {
-            path: "admin/dashboard/manage-products",
-            element: <ManageUsers />,
-          },
-        {
-            path: "admin/dashboard/add-product",
-            element: <ManageUsers />,
-          },
-        {
-            path: "admin/dashboard/manage-orders",
-            element: <ManageUsers />,
-          },
-    ]
+    children: [
+      {
+        path: "admin/dashboard/users",
+        element: (
+          <ProtectedRoute>
+            <ManageUsers />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "admin/dashboard/manage-products",
+        element: (
+          <ProtectedRoute>
+            <ManageProducts />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "admin/dashboard/add-product",
+
+        element: (
+          <ProtectedRoute>
+            <AddProduct />,
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "admin/dashboard/manage-orders",
+        element: (
+          <ProtectedRoute>
+            <ManageOrders />,
+          </ProtectedRoute>
+        ),
+      },
+    ],
   },
 ]);
