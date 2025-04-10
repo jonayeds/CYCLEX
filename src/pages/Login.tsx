@@ -8,7 +8,7 @@ import { varifyToken } from "../utils/varifyToken"
 import {  useNavigate } from "react-router-dom"
 import { useAppDispatch } from "../redux/hooks"
 import { useLoginMutation } from "../redux/features/auth/authApi"
-import { IUser, setUser } from "../redux/features/auth/authSlice"
+import { IAuthUser, setUser } from "../redux/features/auth/authSlice"
 
 
 const Login = () => {
@@ -30,7 +30,7 @@ const Login = () => {
       }
       const res = await login(userInfo).unwrap()
       console.log(res)
-      const user = varifyToken(res?.data?.accessToken) as IUser
+      const user = varifyToken(res?.data?.accessToken) as IAuthUser
       dispatch(setUser({user, token:res?.data?.accessToken}))
       navigate(`/`)
         toast.success("Logged in", {id:toastId, duration:1000})

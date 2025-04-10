@@ -8,7 +8,7 @@ import { varifyToken } from "../utils/varifyToken"
 import {  useNavigate } from "react-router-dom"
 import { useAppDispatch } from "../redux/hooks"
 import { useLoginMutation, useRegisterMutation } from "../redux/features/auth/authApi"
-import { IUser, setUser } from "../redux/features/auth/authSlice"
+import { IAuthUser, setUser } from "../redux/features/auth/authSlice"
 
 
 const Register = () => {
@@ -40,7 +40,7 @@ const Register = () => {
       const registration =  await register(userInfo).unwrap()
       if(registration.success){
         const res = await login({email:values.email, password:values.password}).unwrap()
-        const user = varifyToken(res?.data?.accessToken) as IUser
+        const user = varifyToken(res?.data?.accessToken) as IAuthUser
         dispatch(setUser({user, token:res?.data?.accessToken}))
       }
       navigate(`/`)

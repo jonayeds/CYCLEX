@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { JwtPayload } from "jwt-decode";
 import { RootState } from "../../store";
-export interface IUser extends JwtPayload{
+export interface IAuthUser extends JwtPayload{
     email:string;
     role:"admin"|"customer"
 }
 
 type TAuthState = {
-    user: null | IUser,
+    user: null | IAuthUser,
     token:string | null
 }
 

@@ -5,7 +5,6 @@ import { Navigate } from "react-router-dom"
 
 const ProtectedRoute = ({children,role}: {children:ReactNode, role?:'customer'| 'admin'}) => {
     const user = useAppSelector(selectCurrentUser)
-    console.log(user)
     if(!user){
       return <Navigate to={"/login"}/>
     }

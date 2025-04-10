@@ -9,8 +9,16 @@ const usersApi = baseApi.injectEndpoints({
                     method:"GET",
                 }
             }
+        }),
+        toggleBlockUser: builder.mutation({
+            query:(userId:string)=>{
+                return {
+                    url:`/users/${userId}`,
+                    method:"PATCH",
+                }
+            }
         })
     })
 })
 
-export const {useGetAllUsersQueryQuery} = usersApi
+export const {useGetAllUsersQueryQuery, useToggleBlockUserMutation} = usersApi

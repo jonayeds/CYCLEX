@@ -14,7 +14,7 @@ const DashboardNavigation = () => {
             <AccordionItem value="users">
             <AccordionTrigger className="">Users</AccordionTrigger>
             <AccordionContent className="py-2">
-                <NavLink to={"/dashnoard/admin/users"} className={'group'}><span className={'group-[.active]:bg-black group-[.active]:text-white px-4 py-1 rounded-lg '}>Manage Users</span></NavLink>
+                <NavLink to={"/dashboard/admin/users"} className={'group'}><span className={'group-[.active]:bg-black group-[.active]:text-white px-4 py-1 rounded-lg '}>Manage Users</span></NavLink>
             </AccordionContent>
           </AccordionItem>
             <AccordionItem value="products">
