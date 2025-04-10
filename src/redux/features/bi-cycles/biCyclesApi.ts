@@ -33,6 +33,15 @@ const authApi = baseApi.injectEndpoints({
             }
         }
        }),
+       addBicycle: builder.mutation({
+        query:(payload)=>{
+            return{
+                url:'/products/',
+                method:"POST",
+                body:payload
+            }
+        }
+       }),
        makePayment: builder.mutation({
         query:(payload)=>{
             return{
@@ -53,4 +62,4 @@ const authApi = baseApi.injectEndpoints({
     })
 })
 
-export const {useGetAllBiCyclesQuery, useGetSingleBicycleQuery, useOrderBicycleMutation, useMakePaymentMutation, useVerifyPaymentMutation} = authApi
+export const {useGetAllBiCyclesQuery, useAddBicycleMutation,useGetSingleBicycleQuery, useOrderBicycleMutation, useMakePaymentMutation, useVerifyPaymentMutation} = authApi

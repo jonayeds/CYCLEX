@@ -20,8 +20,8 @@ const DashboardNavigation = () => {
             <AccordionItem value="products">
             <AccordionTrigger className="">Products</AccordionTrigger>
             <AccordionContent className="flex flex-col gap-2 py-2">
-            <NavLink to={"/dashboard/admin/add-product"} className={'group'}><span className={'group-[.active]:bg-black group-[.active]:text-white px-4 py-1 rounded-lg '}>Manage Users</span></NavLink>
-            <NavLink to={"/dashboard/admin/manage-products"} className={'group'}><span className={'group-[.active]:bg-black group-[.active]:text-white px-4 py-1 rounded-lg '}>Manage Users</span></NavLink>
+            <NavLink to={"/dashboard/admin/add-product"} className={'group'}><span className={'group-[.active]:bg-black group-[.active]:text-white px-4 py-1 rounded-lg '}>Add Product</span></NavLink>
+            <NavLink to={"/dashboard/admin/manage-products"} className={'group'}><span className={'group-[.active]:bg-black group-[.active]:text-white px-4 py-1 rounded-lg '}>Manage Products</span></NavLink>
             </AccordionContent>
           </AccordionItem>
             <AccordionItem value="Orders" className="">
