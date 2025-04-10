@@ -11,7 +11,7 @@ const ManageProducts = () => {
         return <Loading/>
     }
   return (
-    <div>
+    <div className="mt-12">
         <DataTable columns={productsColumn} data={products}/>
     </div>
   )
