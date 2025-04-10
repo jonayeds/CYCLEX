@@ -31,7 +31,6 @@ const Login = () => {
       const res = await login(userInfo).unwrap()
       console.log(res)
       const user = varifyToken(res?.data?.accessToken) as IUser
-      console.log("user",user)
       dispatch(setUser({user, token:res?.data?.accessToken}))
       navigate(`/`)
         toast.success("Logged in", {id:toastId, duration:1000})

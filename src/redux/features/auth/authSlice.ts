@@ -21,13 +21,16 @@ const authSlice = createSlice({
     initialState,
     reducers:{
         setUser:(state, action:PayloadAction<TAuthState>)=>{
+
             const {user, token} = action.payload
+            localStorage.setItem("accessToken", token as string) 
             state.user = user
             state.token = token
         },
         logOut :(state)=>{
             state.user = null;
             state.token = null;
+            localStorage.removeItem("accessToken")
         }
     }
 })

@@ -15,6 +15,8 @@ import ManageUsers from "../pages/dasboard/admin/ManageUsers";
 import ManageProducts from "../pages/dasboard/admin/ManageProducts";
 import ManageOrders from "../pages/dasboard/admin/ManageOrders";
 import AddProduct from "../pages/dasboard/admin/AddProduct";
+import ManageProfile from "../pages/dasboard/customer/ManageProfile";
+import MyOrders from "../pages/dasboard/customer/MyOrders";
 
 export const router = createBrowserRouter([
   {
@@ -72,35 +74,50 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "admin/dashboard/users",
+        path: "admin/users",
         element: (
-          <ProtectedRoute>
+          <ProtectedRoute role="admin">
             <ManageUsers />
           </ProtectedRoute>
         ),
       },
       {
-        path: "admin/dashboard/manage-products",
+        path: "admin/manage-products",
         element: (
-          <ProtectedRoute>
+          <ProtectedRoute role="admin">
             <ManageProducts />
           </ProtectedRoute>
         ),
       },
       {
-        path: "admin/dashboard/add-product",
-
+        path: "admin/add-product",
         element: (
-          <ProtectedRoute>
+          <ProtectedRoute role="admin">
             <AddProduct />,
           </ProtectedRoute>
         ),
       },
       {
-        path: "admin/dashboard/manage-orders",
+        path: "admin/manage-orders",
         element: (
-          <ProtectedRoute>
+          <ProtectedRoute role="admin">
             <ManageOrders />,
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "customer/manage-profile",
+        element: (
+          <ProtectedRoute role="customer">
+            <ManageProfile />,
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "customer/my-orders",
+        element: (
+          <ProtectedRoute role="customer">
+            <MyOrders />,
           </ProtectedRoute>
         ),
       },
