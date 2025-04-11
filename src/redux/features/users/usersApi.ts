@@ -26,12 +26,28 @@ const usersApi = baseApi.injectEndpoints({
         };
       },
     }),
+    getMyOrders: builder.query({
+      query: () => {
+        return {
+          url: `/orders/my-orders`,
+          method: "GET",
+        };
+      },
+    }),
     updatePassword: builder.mutation({
       query: (payload) => {
         return {
           url: `/users/update-password`,
           method: "PATCH",
           body:payload
+        };
+      },
+    }),
+    deleteOrder: builder.mutation({
+      query: (payload:string) => {
+        return {
+          url: `/orders/${payload}`,
+          method: "DELETE",
         };
       },
     }),
@@ -42,5 +58,7 @@ export const {
   useGetAllUsersQueryQuery,
   useToggleBlockUserMutation,
   useGetCurrentUserQuery,
-  useUpdatePasswordMutation
+  useUpdatePasswordMutation,
+  useGetMyOrdersQuery,
+  useDeleteOrderMutation
 } = usersApi;
