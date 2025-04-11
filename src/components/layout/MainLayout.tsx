@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import { Button } from "../ui/button";
 import {
   Drawer,
@@ -8,14 +8,14 @@ import {
   DrawerTrigger,
 } from "../ui/drawer";
 import { useDispatch } from "react-redux";
-import { logOut, selectCurrentToken } from "../../redux/features/auth/authSlice";
+import { logOut,  selectCurrentUser } from "../../redux/features/auth/authSlice";
 import { useAppSelector } from "../../redux/hooks";
 import { Github, Twitter } from "lucide-react";
 
 
 const MainLayout = () => {
   const dispatch = useDispatch()
-  const token = useAppSelector(selectCurrentToken)
+  const user = useAppSelector(selectCurrentUser)
   const handleLogout = ()=>{
     dispatch(logOut())
   }
@@ -44,7 +44,7 @@ const MainLayout = () => {
           <DrawerContent >
             <div className="px-4 lg:px-8 font-description text-lg flex flex-col items-start pt-[7vh] gap-y-4 tracking-wider">
             <DrawerTitle>
-            <p className="font-main text-black mx-auto text-3xl uppercase cursor-pointer tracking-wider md:tracking-[8px]">cyclex</p>
+            <Link to={"/"} className="font-main text-black mx-auto text-3xl uppercase cursor-pointer tracking-wider md:tracking-[8px]">cyclex</Link>
 
             </DrawerTitle>
               <hr  className="border-2 border-gray-200 w-full mb-4"/>
@@ -53,16 +53,19 @@ const MainLayout = () => {
             <NavLink to={"/"} className={"group"}><span className="group-[.active]:text-xl group-[.active]:font-bold duration-300">Home</span></NavLink>
             <NavLink to={"/all-bicycles"} className={"group"}><span className="group-[.active]:text-xl group-[.active]:font-bold duration-300">All Bi-Cycles</span></NavLink>
             <NavLink to={"/about"} className={"group"}><span className="group-[.active]:text-xl group-[.active]:font-bold duration-300">About</span></NavLink>
-            <NavLink to={"/dashboard"} className={"group"}><span className="group-[.active]:text-xl group-[.active]:font-bold duration-300">Dashboard</span></NavLink>
+            {
+              user &&  <NavLink to={ user.role === "admin" ? "/dashboard/admin/users": "/dashboard/customer/manage-profile"} className={"group"}><span className="group-[.active]:text-xl group-[.active]:font-bold duration-300">Dashboard</span></NavLink>
+            }
+           
             </DrawerDescription>
             </div>
           </DrawerContent>
         </Drawer>
         <div>
-            <h1 className="font-main text-3xl uppercase cursor-pointer tracking-wider md:tracking-[8px]">cyclex</h1>
+            <Link to={"/"} className="font-main text-3xl uppercase cursor-pointer tracking-wider md:tracking-[8px]">cyclex</Link>
         </div>
         {
-          !token ? (<div className="flex gap-4 items-center">
+          !user ? (<div className="flex gap-4 items-center">
             <NavLink to={"/login"}><Button>Login</Button></NavLink>
             <NavLink to={"/register"} className={"hidden md:flex"}><Button variant={"link"}>Register</Button></NavLink>
         </div>): (<div>

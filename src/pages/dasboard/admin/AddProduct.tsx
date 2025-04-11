@@ -7,7 +7,6 @@ import { toast } from "sonner"
 import { useAddBicycleMutation } from "../../../redux/features/bi-cycles/biCyclesApi"
 import { useNavigate } from "react-router-dom"
 
-
 const BicycleCategories = ['Mountain', 'Road', 'Hybrid', 'BMX', 'Electric']
 
 const AddProduct = () => {
@@ -20,13 +19,15 @@ const AddProduct = () => {
             brand:'',
             quantity:'',
             description:'',
-            type:''
+            type:'',
+            image:''
         }
     })
 
     const handleAddProduct: SubmitHandler<FieldValues> = async(data)=>{
         data.price = Number(data.price)
         data.quantity = Number(data.quantity)
+
         if(!(data.price && data.brand && data.quantity && data.type && data.name )){
             toast.error("All Fields are neeeded")
             return
@@ -35,6 +36,7 @@ const AddProduct = () => {
             toast.error("Price and Quantity cannot be a negative number")
             return 
         }
+
         if(data.quantity > 0){
             data.inStock = true
         }else data.inStock = false
@@ -54,14 +56,27 @@ const AddProduct = () => {
     <div className="min-h-[calc(100vh-100px)] flex items-center justify-center">
         <div className="border border-gray-100 p-8 rounded-xl">
             <h1 className="font-main text-[6vw] md:text-[3vw] text-center">Add Bi-Cycle</h1>
+            
             <Form {...form} >
-                <form onSubmit={form.handleSubmit(handleAddProduct)} className="grid md:grid-cols-2 gap-4 grid-cols-1 mt-12">
+                <form onSubmit={form.handleSubmit(handleAddProduct)} className="grid md:grid-cols-2 gap-4 grid-cols-1 ">
                 <FormField
           control={form.control}
           name="name"
           render={({ field }) => (
             <FormItem className="md:col-span-2">
               <FormLabel>Name</FormLabel>
+              <FormControl>
+                <Input  {...field} type="text" />
+              </FormControl>
+            </FormItem>
+          )}
+        />
+                <FormField
+          control={form.control}
+          name="image"
+          render={({ field }) => (
+            <FormItem className="md:col-span-2">
+              <FormLabel>Image</FormLabel>
               <FormControl>
                 <Input  {...field} type="text" />
               </FormControl>

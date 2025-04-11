@@ -45,7 +45,7 @@ const BicycleDetails = () => {
           </div>
           <p>Available : {bicycle?.quantity}</p>
         </div>
-
+          <p className="text-gray-600 text-sm mt-4">{bicycle?.description}</p>
         {bicycle.inStock ? (
           <p className="text-3xl mt-4">$$ {bicycle?.price}</p>
         ) : (

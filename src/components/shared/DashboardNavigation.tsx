@@ -1,4 +1,4 @@
-import {  NavLink } from "react-router-dom"
+import {  Link, NavLink } from "react-router-dom"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion"
 import { useAppSelector } from "../../redux/hooks"
 import { selectCurrentUser } from "../../redux/features/auth/authSlice"
@@ -7,8 +7,8 @@ const DashboardNavigation = () => {
     const user = useAppSelector(selectCurrentUser)
   return (
     <div className="min-h-screen  px-4">
-        <div className="pt-12">
-        <h1 className="font-main text-center text-3xl uppercase cursor-pointer tracking-wider md:tracking-[8px]">cyclex</h1>
+        <div className="pt-12 w-full">
+        <Link to={"/"} className="font-main  flex justify-center text-center text-3xl uppercase cursor-pointer tracking-wider md:tracking-[8px]">cyclex</Link>
         {
             user?.role === 'admin'? <Accordion type="single" collapsible className="mt-8" >
             <AccordionItem value="users">
@@ -31,8 +31,9 @@ const DashboardNavigation = () => {
             </AccordionContent>
           </AccordionItem>
             </Accordion> : <div className="flex flex-col gap-4 mt-8">
-                <NavLink to={'/dashboard/customer/manage-profile'}><span className={'group-[.active]:bg-black group-[.active]:text-white px-4 py-1 rounded-lg '}>Manage Profile</span></NavLink>
-                <NavLink to={'/dashboard/customer/My-orders'}><span className={'group-[.active]:bg-black group-[.active]:text-white px-4 py-1 rounded-lg '}>My Orders</span></NavLink>
+                <NavLink to={'/dashboard/customer/manage-profile'} className={"group px-4"}><span className={'group-[.active]:bg-black group-[.active]:text-white px-4 py-1 rounded-lg '}>Manage Profile</span></NavLink>
+                <hr className="border border-gray-200 " />
+                <NavLink to={'/dashboard/customer/My-orders'} className={"group px-4"}><span className={'group-[.active]:bg-black group-[.active]:text-white px-4 py-1 rounded-lg '}>My Orders</span></NavLink>
             </div>
         }
         
