@@ -18,7 +18,7 @@
 ## Technologies used
 <p align="left">  
 <a ">
- <img  src="https://readme-components.vercel.app/api?component=logo&fill=black&logo=react.js&svgfill=15d8fe">  
+ <img  src="https://readme-components.vercel.app/api?component=logo&fill=black&logo=react&svgfill=15d8fe">  
  </a>
    <a >
 <img  src="https://readme-components.vercel.app/api?component=logo&fill=black&logo=typescript&svgfill=2d79c7">
@@ -33,7 +33,7 @@
 <img  src="https://readme-components.vercel.app/api?component=logo&fill=black&logo=vercel&svgfill=df5c43">  
 </a>
 <a >
-<img  src="https://readme-components.vercel.app/api?component=logo&fill=black&logo=shad-cn&svgfill=cd6799">
+<img  src="https://readme-components.vercel.app/api?component=logo&fill=black&logo=shadCn&svgfill=cd6799">
 </a>
 
 
